@@ -8,7 +8,6 @@ project(numen
 option(BUILD_SHARED_LIBS "Build shared libraries" ON)
 option(BUILD_STATIC_LIBS "Build static libraries" ON)
 option(BUILD_TESTING "Build tests" ON)
-option(BUILD_DOCS "Build documentation" OFF)
 option(INSTALL_SYSTEM_WIDE "Install system-wide" ON)
 
 set(CMAKE_C_STANDARD 99)
