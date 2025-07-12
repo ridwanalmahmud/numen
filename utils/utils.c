@@ -1,7 +1,7 @@
 #include "utils.h"
 #include <stdbool.h>
 #include <float.h>
-#include <stdlib.h>
+#include <string.h>
 
 Status lut_factorial(uint8_t n, double_t *result) {
     if (result == NULL)
@@ -57,4 +57,29 @@ Status factorial(double_t n, double_t *result) {
     } else {
         return gamma_factorial(n, result);
     }
+}
+
+Status rsqrt(double_t n, double_t *result) {
+    if (n < 0 || isnan(n) || isinf(n) || result == NULL)
+        return INVALID_INPUT;
+
+    const double_t threehalfs = 1.5;
+    double_t y = n;
+    int64_t i;
+
+    memcpy(&i, &y, sizeof(double_t));
+
+    // magic number for double_t (64-bit)
+    i = 0x5fe6eb50c7b537a9 - (i >> 1);
+
+    // copy bits back to double_t
+    memcpy(&y, &i, sizeof(double_t));
+
+    // Newton-Raphson iterations (3x for double_t precision)
+    y = y * (threehalfs - (n * 0.5 * y * y));
+    y = y * (threehalfs - (n * 0.5 * y * y));
+    y = y * (threehalfs - (n * 0.5 * y * y));
+
+    *result = y;
+    return SUCCESS;
 }

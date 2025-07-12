@@ -100,7 +100,7 @@ if(BUILD_TESTING)
             target_link_libraries(numne_tests PRIVATE numen_static)
         endif()
 
-        target_link_libraries(numen_tests PRIVATE gtest)
+        target_link_libraries(numen_tests PRIVATE gtest gtest_main)
         target_include_directories(numen_tests PRIVATE
             ${CMAKE_CURRENT_SOURCE_DIR}/include
             ${CMAKE_CURRENT_SOURCE_DIR}/utils

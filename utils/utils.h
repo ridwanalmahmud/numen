@@ -12,6 +12,10 @@ typedef enum {
 
 static const double_t PI = 3.14159265358979323846;
 
+/*
+ * Factorial computation
+ */
+
 // factorial lookup table upto 20!
 // used for (0-20)! and with O(n) time complexity
 static const uint64_t FACTORIAL_LUT[21] = {
@@ -40,5 +44,12 @@ Status stirlings_factorial(uint8_t n, double_t *result);
 // n !is_integer -> gamma_factorial
 // can only calculate upto 170! after that double_t overflows
 Status factorial(double_t n, double_t *result);
+
+/*
+ * Inverse square root
+ */
+
+// quake III fast inverse square root algorithm
+Status rsqrt(double_t n, double_t *result);
 
 #endif // !__UTILS_H__
